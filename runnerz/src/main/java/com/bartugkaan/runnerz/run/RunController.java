@@ -1,5 +1,6 @@
 package com.bartugkaan.runnerz.run;
 
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -33,7 +34,7 @@ public class RunController {
     //Post
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    void create(@RequestBody Run run){
+    void create(@Valid @RequestBody Run run){
         runRepository.create(run);
     }
 
@@ -41,7 +42,7 @@ public class RunController {
     //put
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    void update(@RequestBody Run run,@PathVariable Integer id){
+    void update(@Valid @RequestBody Run run,@PathVariable Integer id){
         runRepository.update(run, id);
     }
 
